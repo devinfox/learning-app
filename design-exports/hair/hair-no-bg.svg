@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 1400" width="1100" height="1400">
+  <title>Lottie soft bob</title>
+  <defs>
+    <linearGradient id="hairGold" x1="0.25" y1="0.05" x2="0.75" y2="0.95">
+      <stop offset="0" stop-color="#FFF0C0"/>
+      <stop offset="0.35" stop-color="#FFD56A"/>
+      <stop offset="0.7" stop-color="#F0B02E"/>
+      <stop offset="1" stop-color="#D99420"/>
+    </linearGradient>
+    <linearGradient id="hairLift" x1="0.2" y1="0" x2="0.8" y2="1">
+      <stop offset="0" stop-color="#FFF8D8"/>
+      <stop offset="0.45" stop-color="#FFE48A"/>
+      <stop offset="1" stop-color="#F5C048"/>
+    </linearGradient>
+    <linearGradient id="hairAmber" x1="0.3" y1="0.1" x2="0.7" y2="1">
+      <stop offset="0" stop-color="#F0C040"/>
+      <stop offset="0.55" stop-color="#E0A028"/>
+      <stop offset="1" stop-color="#C88818"/>
+    </linearGradient>
+    <linearGradient id="hairDeep" x1="0.35" y1="0.2" x2="0.7" y2="1">
+      <stop offset="0" stop-color="#D49428"/>
+      <stop offset="0.5" stop-color="#B87818"/>
+      <stop offset="1" stop-color="#8A5810"/>
+    </linearGradient>
+    <linearGradient id="sheen" x1="0.2" y1="0" x2="0.85" y2="1">
+      <stop offset="0" stop-color="#FFFEF8" stop-opacity="0.9"/>
+      <stop offset="0.5" stop-color="#FFF2C0" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#FFE8A0" stop-opacity="0.12"/>
+    </linearGradient>
+    <linearGradient id="bounce" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0" stop-color="#B8C8FF" stop-opacity="0"/>
+      <stop offset="0.55" stop-color="#B8C8FF" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#B8C8FF" stop-opacity="0.35"/>
+    </linearGradient>
+    <radialGradient id="bgGlow" cx="0.5" cy="0.4" r="0.52">
+      <stop offset="0" stop-color="#FFC93A" stop-opacity="0.9"/>
+      <stop offset="0.45" stop-color="#B9700F" stop-opacity="0.48"/>
+      <stop offset="1" stop-color="#0E0802" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g id="Back Cap">
+    <path d="M 168.08 593.8 C 131.12 516.8, 118.8 384.8, 155.76 329.8 C 180.4 208.8, 254.32 76.8, 377.52 -11.2 C 451.44 -60.7, 500.72 -71.7, 550 -77.2 C 599.28 -71.7, 648.56 -60.7, 722.48 -11.2 C 845.68 76.8, 919.6 208.8, 944.24 329.8 C 981.2 384.8, 968.88 516.8, 931.92 593.8 C 956.56 637.8, 894.96 654.3, 833.36 626.8 C 870.32 560.8, 882.64 472.8, 870.32 406.8 C 845.68 538.8, 821.04 604.8, 784.08 582.8 C 777.92 516.8, 784.08 362.8, 771.76 274.8 C 765.6 219.8, 747.12 186.8, 710.16 175.8 C 648.56 162.6, 550 156, 451.44 162.6 C 389.84 175.8, 352.88 186.8, 328.24 274.8 C 315.92 362.8, 322.08 516.8, 315.92 582.8 C 278.96 604.8, 254.32 538.8, 229.68 406.8 C 217.36 472.8, 229.68 560.8, 266.64 626.8 C 205.04 654.3, 143.44 637.8, 168.08 593.8 Z" fill="url(#hairGold)" stroke="#C48928" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M 352.88 10.8 C 451.44 -66.2, 550 -88.2, 648.56 -77.2 C 771.76 -60.7, 870.32 10.8, 919.6 98.8 C 845.68 54.8, 747.12 21.8, 648.56 10.8 C 550 -0.2, 451.44 16.3, 377.52 65.8 C 352.88 43.8, 352.88 10.8, 352.88 10.8 Z" fill="url(#hairLift)" stroke="#C48928" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+  </g>
+  <g id="Left Lock">
+    <path d="M 205.04 142.8 C 131.12 274.8, 118.8 406.8, 143.44 516.8 C 161.92 582.8, 205.04 626.8, 278.96 632.3 C 340.56 632.3, 389.84 604.8, 414.48 560.8 C 377.52 494.8, 352.88 406.8, 359.04 318.8 C 365.2 230.8, 389.84 164.8, 426.8 120.8 C 352.88 109.8, 266.64 109.8, 205.04 142.8 Z" fill="url(#hairAmber)" stroke="#C48928" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+  </g>
+  <g id="Right Lock">
+    <path d="M 894.96 142.8 C 968.88 274.8, 981.2 406.8, 956.56 516.8 C 938.08 582.8, 894.96 621.3, 827.2 626.8 C 765.6 626.8, 716.32 599.3, 691.68 555.3 C 728.64 489.3, 753.28 401.3, 747.12 313.3 C 740.96 225.3, 716.32 159.3, 679.36 120.8 C 747.12 109.8, 833.36 109.8, 894.96 142.8 Z" fill="url(#hairAmber)" stroke="#C48928" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+  </g>
+  <g id="Shadows" fill="url(#hairDeep)">
+    <path d="M 278.96 120.8 C 229.68 186.8, 205.04 274.8, 217.36 340.8 C 254.32 318.8, 303.6 274.8, 340.56 230.8 C 328.24 164.8, 303.6 126.3, 278.96 120.8 Z" opacity="0.28"/>
+    <path d="M 796.4 109.8 C 845.68 164.8, 882.64 252.8, 894.96 340.8 C 845.68 307.8, 796.4 263.8, 759.44 208.8 C 771.76 153.8, 784.08 120.8, 796.4 109.8 Z" opacity="0.26"/>
+    <path d="M 180.4 494.8 C 168.08 560.8, 192.72 610.3, 254.32 621.3 C 229.68 560.8, 211.2 516.8, 205.04 472.8 C 192.72 478.3, 186.56 483.8, 180.4 494.8 Z" opacity="0.22"/>
+    <path d="M 919.6 494.8 C 931.92 560.8, 907.28 610.3, 845.68 621.3 C 870.32 560.8, 888.8 516.8, 894.96 472.8 C 907.28 478.3, 913.44 483.8, 919.6 494.8 Z" opacity="0.22"/>
+  </g>
+  <g id="Bounce Light" fill="url(#bounce)" opacity="0.85">
+    <path d="M 155.76 450.8 C 143.44 538.8, 180.4 604.8, 254.32 615.8 C 229.68 560.8, 205.04 505.8, 192.72 450.8 C 180.4 445.3, 161.92 445.3, 155.76 450.8 Z"/>
+    <path d="M 944.24 450.8 C 956.56 538.8, 919.6 604.8, 845.68 615.8 C 870.32 560.8, 894.96 505.8, 907.28 450.8 C 919.6 445.3, 938.08 445.3, 944.24 450.8 Z"/>
+  </g>
+  <g id="Front Bangs">
+    <path d="M 648.56 -11.2 C 525.36 -44.2, 377.52 -11.2, 278.96 76.8 C 205.04 142.8, 180.4 230.8, 205.04 296.8 C 278.96 274.8, 377.52 230.8, 476.08 186.8 C 550 148.3, 599.28 87.8, 623.92 32.8 C 636.24 10.8, 648.56 -5.7, 648.56 -11.2 Z" fill="url(#hairLift)" stroke="#C48928" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M 476.08 -22.2 C 525.36 -38.7, 574.64 -38.7, 623.92 -22.2 C 648.56 32.8, 654.72 98.8, 636.24 153.8 C 599.28 170.3, 550 175.8, 500.72 164.8 C 463.76 109.8, 457.6 38.3, 476.08 -22.2 Z" fill="url(#hairGold)" stroke="#C48928" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M 648.56 -11.2 C 747.12 -22.2, 845.68 21.8, 919.6 98.8 C 968.88 164.8, 993.52 241.8, 981.2 307.8 C 919.6 274.8, 845.68 230.8, 771.76 186.8 C 722.48 142.8, 685.52 76.8, 660.88 21.8 C 654.72 5.3, 648.56 -5.7, 648.56 -11.2 Z" fill="url(#hairGold)" stroke="#C48928" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+  </g>
+  <g id="Highlights" fill="url(#sheen)">
+    <path d="M 451.44 -33.2 C 500.72 -49.7, 574.64 -55.2, 648.56 -44.2 C 623.92 -11.2, 574.64 10.8, 525.36 16.3 C 482.24 5.3, 457.6 -16.7, 451.44 -33.2 Z" opacity="0.88"/>
+    <path d="M 377.52 54.8 C 328.24 98.8, 291.28 153.8, 278.96 208.8 C 328.24 197.8, 389.84 170.3, 439.12 137.3 C 426.8 98.8, 408.32 71.3, 377.52 54.8 Z" opacity="0.82"/>
+    <path d="M 229.68 296.8 C 211.2 362.8, 211.2 428.8, 229.68 494.8 C 260.48 472.8, 278.96 406.8, 285.12 340.8 C 272.8 313.3, 248.16 296.8, 229.68 296.8 Z" opacity="0.72"/>
+    <path d="M 870.32 296.8 C 888.8 362.8, 888.8 428.8, 870.32 494.8 C 839.52 472.8, 821.04 406.8, 814.88 340.8 C 827.2 313.3, 851.84 296.8, 870.32 296.8 Z" opacity="0.72"/>
+  </g>
+</svg>

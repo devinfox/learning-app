@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# UVBrain
 
-## Getting Started
+An adaptive tutoring app for school-age learners. A learner picks a subject,
+takes a placement check, gets a syllabus, and works through lessons with a
+voice-capable study buddy alongside them.
 
-First, run the development server:
+Built with Next.js 16, React 19, Tailwind 4 and TypeScript.
+
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+No external services are required. The database is a folder of JSON files at
+`data/`, created and seeded on first request.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+curl -X POST localhost:3000/api/dev/reset       # wipe back to a fresh seed
+curl -X POST localhost:3000/api/dev/seed-demo   # a grade-4 demo learner
+curl -X POST localhost:3000/api/dev/seed-emma   # a kindergarten demo learner
+```
 
-## Learn More
+## Configuration
 
-To learn more about Next.js, take a look at the following resources:
+Copy your keys into `.env.local`. Both are optional.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Variable | Effect |
+|---|---|
+| `OPENAI_API_KEY` | Switches syllabus generation, lesson authoring and the tutor over to the model. Without it, content comes from the authored packs in `lib/courses/packs` and the tutor returns a scripted reply. |
+| `OPENAI_MODEL` | Defaults to `gpt-5.4`. |
+| `OPENAI_TRANSCRIBE_MODEL` | Defaults to `gpt-4o-transcribe`. |
+| `ELEVENLABS_API_KEY` | Text-to-speech for the study buddy. Without it the buddy replies in text. |
+| `ELEVENLABS_VOICE_ID` | Defaults to `21m00Tcm4TlvDq8ikWAM`. |
+| `ELEVENLABS_MODEL_ID` | Defaults to `eleven_turbo_v2_5`. |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Persistence, streaming, progress and scoring behave the same with or without
+keys.
 
-## Deploy on Vercel
+## Layout
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+app/            routes and API handlers
+components/ui   design-system primitives
+components/domain  product components
+lib/db          types, file-backed store, seeds
+lib/services    domain logic; the only layer routes call
+lib/tutor       the study buddy: bands, memory, briefs, prompt assembly
+lib/courses     authored course packs
+docs/           design system, backend, gamification, study buddy
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`/design` renders a live gallery of the component library.
+
+## Scripts
+
+```bash
+npm run dev     # dev server
+npm run build   # production build
+npm run start   # serve the production build
+npm run lint    # eslint
+```
+
+## Documentation
+
+- [`docs/backend.md`](docs/backend.md) - API surface, data layer, generation pipelines
+- [`docs/brand.md`](docs/brand.md) - design tokens, contrast, typography
+- [`docs/study-buddy.md`](docs/study-buddy.md) - tutor architecture
+- [`docs/gamification.md`](docs/gamification.md) - the reward layer

@@ -1,0 +1,17 @@
+{
+  "version": 3,
+  "fr": 30,
+  "durationFrames": 120,
+  "durationSec": 4,
+  "size": [400, 400],
+  "faceLayer": "Face",
+  "faceHide": "set Face.ks.o.k = 0",
+  "speech": "Mouth muted in Companion; SVG overlay drives visemes",
+  "states": {
+    "idle": { "file": "light-orb-idle.json", "use": "present / waiting", "speed": 1 },
+    "listening": { "file": "light-orb-trail.json", "use": "mic open — attentive energy", "speed": 0.85 },
+    "thinking": { "file": "light-orb-orbit.json", "use": "request in flight", "speed": 1 },
+    "speaking": { "file": "light-orb-dash.json", "use": "TTS playing", "speed": 1 },
+    "celebrating": { "file": "light-orb-dash.json", "use": "reward unlock", "speed": 1.4 }
+  }
+}
