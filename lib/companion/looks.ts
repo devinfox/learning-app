@@ -178,9 +178,9 @@ export const HAIR_LOOKS: HairLook[] = [
     id: "hair-soft-bob",
     name: "Soft bob",
     group: "feminine",
-    /* Soft amber-gold; deep brown only used sparingly in shadow pockets */
+    /* Blonde bob — amber section edges; deep gold/brown only for depth */
     color: "#E8A820",
-    highlight: "#FFF0C0",
+    highlight: "#FFE9A8",
     shadow: "#A86A18",
     swatch: "#F0B02E",
   },

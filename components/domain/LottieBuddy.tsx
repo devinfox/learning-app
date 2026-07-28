@@ -13,7 +13,7 @@ import type { TutorState } from "@/lib/tutor/types";
 import type { Viseme } from "@/lib/tutor/visemes";
 import { MOUTH_POSES } from "@/lib/tutor/visemes";
 import { cn } from "@/lib/ui/cn";
-import { SOFT_BOB_LAYERS } from "./hair/softBobPaths";
+import { SOFT_BOB_LAYERS, type HairPathLayer } from "./hair/softBobPaths";
 
 export interface LottieBuddyProps {
   state?: TutorState;
@@ -570,7 +570,7 @@ export function LottieBuddy({
   );
 }
 
-/** Clean soft-bob vectors. layer=back behind face, front = bangs + sheen. */
+/** Original soft-bob detail, lightly polished. back = falls/cap, front = bangs+crown. */
 function SoftBobHair({
   id,
   hair,
@@ -581,91 +581,88 @@ function SoftBobHair({
   layer: "back" | "front";
 }) {
   const L = SOFT_BOB_LAYERS;
-  /* Warm amber edge — not dark brown helmet outline */
+  /* Amber-gold section edges — not white separators or heavy brown helmet */
   const edge = hair.color;
   const edgeSoft = hair.highlight;
+
+  const fillUrl = (key: HairPathLayer["fill"]) => {
+    if (key === "hairLift") return `url(#${id}-bob-lift)`;
+    if (key === "hairDeep") return `url(#${id}-bob-deep)`;
+    return `url(#${id}-bob-gold)`;
+  };
+
+  const paint = (layerPath: HairPathLayer, i: number) => (
+    <path
+      key={i}
+      d={layerPath.d}
+      fill={fillUrl(layerPath.fill)}
+      stroke={layerPath.stroke && layerPath.stroke >= 0.7 ? edge : edgeSoft}
+      strokeWidth={Math.min(layerPath.stroke ?? 0.55, 0.7)}
+      strokeLinejoin="round"
+      strokeLinecap="round"
+    />
+  );
 
   if (layer === "back") {
     return (
       <g className="lottie-buddy__hair lottie-buddy__hair--soft-bob-back" aria-hidden="true">
         <defs>
-          <linearGradient id={`${id}-bob-gold`} x1="25%" y1="5%" x2="75%" y2="95%">
+          <linearGradient id={`${id}-bob-gold`} x1="22%" y1="5%" x2="78%" y2="95%">
             <stop offset="0%" stopColor={hair.highlight} />
             <stop offset="40%" stopColor={hair.color} />
             <stop offset="100%" stopColor={hair.color} />
           </linearGradient>
-          <linearGradient id={`${id}-bob-lift`} x1="20%" y1="0%" x2="80%" y2="100%">
+          <linearGradient id={`${id}-bob-lift`} x1="18%" y1="0%" x2="82%" y2="100%">
             <stop offset="0%" stopColor={hair.highlight} />
-            <stop offset="55%" stopColor={hair.color} />
+            <stop offset="50%" stopColor={hair.color} />
             <stop offset="100%" stopColor={hair.color} />
           </linearGradient>
-          <linearGradient id={`${id}-bob-amber`} x1="30%" y1="10%" x2="70%" y2="100%">
+          <linearGradient id={`${id}-bob-deep`} x1="28%" y1="0%" x2="75%" y2="100%">
             <stop offset="0%" stopColor={hair.color} />
-            <stop offset="60%" stopColor={hair.color} />
-            <stop offset="100%" stopColor={hair.shadow} stopOpacity="0.55" />
+            <stop offset="50%" stopColor={hair.shadow} stopOpacity="0.75" />
+            <stop offset="100%" stopColor={hair.shadow} stopOpacity="0.9" />
           </linearGradient>
-          <linearGradient id={`${id}-bob-deep`} x1="35%" y1="20%" x2="70%" y2="100%">
-            <stop offset="0%" stopColor={hair.shadow} stopOpacity="0.55" />
-            <stop offset="100%" stopColor={hair.shadow} stopOpacity="0.85" />
-          </linearGradient>
-          <linearGradient id={`${id}-bob-sheen`} x1="20%" y1="0%" x2="85%" y2="100%">
-            <stop offset="0%" stopColor="#FFFEF8" stopOpacity="0.9" />
-            <stop offset="50%" stopColor={hair.highlight} stopOpacity="0.5" />
-            <stop offset="100%" stopColor={hair.highlight} stopOpacity="0.1" />
+          <linearGradient id={`${id}-bob-sheen`} x1="15%" y1="0%" x2="85%" y2="100%">
+            <stop offset="0%" stopColor="#FFFEF5" stopOpacity="0.88" />
+            <stop offset="55%" stopColor={hair.highlight} stopOpacity="0.5" />
+            <stop offset="100%" stopColor={hair.highlight} stopOpacity="0.12" />
           </linearGradient>
           <linearGradient id={`${id}-bob-bounce`} x1="50%" y1="0%" x2="50%" y2="100%">
             <stop offset="0%" stopColor="#B8C8FF" stopOpacity="0" />
-            <stop offset="55%" stopColor="#B8C8FF" stopOpacity="0.2" />
-            <stop offset="100%" stopColor="#B8C8FF" stopOpacity="0.32" />
+            <stop offset="55%" stopColor="#B8C8FF" stopOpacity="0.16" />
+            <stop offset="100%" stopColor="#B8C8FF" stopOpacity="0.26" />
           </linearGradient>
         </defs>
 
         <g id={`${id}-Back-Cap`}>
           <path
-            d={L.backCap.silhouette}
+            d={L.silhouette}
             fill={`url(#${id}-bob-gold)`}
             stroke={edge}
-            strokeWidth={0.55}
+            strokeWidth={0.65}
             strokeLinejoin="round"
             strokeLinecap="round"
           />
           <path
-            d={L.backCap.crown}
-            fill={`url(#${id}-bob-lift)`}
+            d={L.crownFill}
+            fill={`url(#${id}-bob-gold)`}
             stroke={edgeSoft}
-            strokeWidth={0.35}
-            strokeLinejoin="round"
-            opacity={0.95}
-          />
-        </g>
-
-        <g id={`${id}-Left-Lock`}>
-          <path
-            d={L.leftLock}
-            fill={`url(#${id}-bob-amber)`}
-            stroke={edge}
-            strokeWidth={0.5}
+            strokeWidth={0.45}
             strokeLinejoin="round"
           />
         </g>
 
-        <g id={`${id}-Right-Lock`}>
-          <path
-            d={L.rightLock}
-            fill={`url(#${id}-bob-amber)`}
-            stroke={edge}
-            strokeWidth={0.5}
-            strokeLinejoin="round"
-          />
-        </g>
+        <g id={`${id}-Left-Lock`}>{L.leftPanels.map(paint)}</g>
+        <g id={`${id}-Right-Lock`}>{L.rightPanels.map(paint)}</g>
+        <g id={`${id}-Side-Caps`}>{L.sideCaps.map(paint)}</g>
 
         <g id={`${id}-Shadows`} fill={`url(#${id}-bob-deep)`}>
-          {L.shadows.map((s, i) => (
+          {L.deepOverlaps.map((s, i) => (
             <path key={i} d={s.d} opacity={s.opacity} />
           ))}
         </g>
 
-        <g id={`${id}-Bounce-Light`} fill={`url(#${id}-bob-bounce)`} opacity={0.85}>
+        <g id={`${id}-Bounce-Light`} fill={`url(#${id}-bob-bounce)`} opacity={0.8}>
           <path d={L.bounceLight.left} />
           <path d={L.bounceLight.right} />
         </g>
@@ -675,35 +672,24 @@ function SoftBobHair({
 
   return (
     <g className="lottie-buddy__hair lottie-buddy__hair--soft-bob-front" aria-hidden="true">
-      <g id={`${id}-Front-Bangs`}>
-        <path
-          d={L.frontBangs.leftSwoop}
-          fill={`url(#${id}-bob-lift)`}
-          stroke={edge}
-          strokeWidth={0.5}
-          strokeLinejoin="round"
-        />
-        <path
-          d={L.frontBangs.center}
-          fill={`url(#${id}-bob-gold)`}
-          stroke={edgeSoft}
-          strokeWidth={0.4}
-          strokeLinejoin="round"
-        />
-        <path
-          d={L.frontBangs.right}
-          fill={`url(#${id}-bob-gold)`}
-          stroke={edgeSoft}
-          strokeWidth={0.4}
-          strokeLinejoin="round"
-        />
+      <g id={`${id}-Front-Bangs`}>{L.bangScallops.map(paint)}</g>
+      <g id={`${id}-Crown-Leaves`}>{L.crownLeaves.map(paint)}</g>
+      <g
+        id={`${id}-Flow-Lines`}
+        fill="none"
+        stroke={hair.highlight}
+        strokeWidth={0.32}
+        strokeLinecap="round"
+        opacity={0.3}
+      >
+        {L.flowLines.map((d, i) => (
+          <path key={i} d={d} />
+        ))}
       </g>
-
-      <g id={`${id}-Highlights`} fill={`url(#${id}-bob-sheen)`}>
-        <path d={L.highlights.crown} opacity={0.88} />
-        <path d={L.highlights.mainBang} opacity={0.82} />
-        <path d={L.highlights.leftSide} opacity={0.72} />
-        <path d={L.highlights.rightSide} opacity={0.72} />
+      <g id={`${id}-Highlights`} fill={`url(#${id}-bob-sheen)`} opacity={0.8}>
+        {L.highlights.map((d, i) => (
+          <path key={i} d={d} />
+        ))}
       </g>
     </g>
   );
