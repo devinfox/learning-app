@@ -1,6 +1,7 @@
 import { Collection } from "./store";
 import type { CourseBrief, LearnerMemory } from "@/lib/tutor/types";
 import type {
+  ArcadePlay,
   Attempt,
   Chat,
   CompanionState,
@@ -40,6 +41,7 @@ export const db = {
   learnerMemories: new Collection<LearnerMemory>("learner-memories"),
   courseBriefs: new Collection<CourseBrief>("course-briefs"),
   companionStates: new Collection<CompanionState>("companion-states"),
+  arcadePlays: new Collection<ArcadePlay>("arcade-plays"),
 };
 
 export type Database = typeof db;

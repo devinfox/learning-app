@@ -250,6 +250,19 @@ export interface ProjectSubmission {
   submittedAt: string;
 }
 
+export interface ArcadePlay {
+  id: string;
+  userId: string;
+  gameId: string;
+  missionId: string;
+  roomsCleared: number;
+  questionsAnswered: number;
+  questionsCorrect: number;
+  perfectAnswers: number;
+  heartsLeft: number;
+  playedAt: string;
+}
+
 export interface CompanionState {
   id: string;
   userId: string;

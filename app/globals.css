@@ -609,3 +609,117 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+@layer components {
+  .dd-cabinet {
+    display: block;
+    border-radius: 1.5rem;
+    transition:
+      transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 220ms ease;
+  }
+  .dd-cabinet:hover,
+  .dd-cabinet:focus-visible {
+    transform: translateY(-4px);
+  }
+  .dd-cabinet:focus-visible {
+    outline: 3px solid var(--color-ray-2);
+    outline-offset: 4px;
+  }
+
+  .dd-cabinet__body {
+    overflow: hidden;
+    border-radius: 1.5rem;
+    border: 1px solid rgb(160 140 255 / 0.28);
+    background:
+      linear-gradient(180deg, rgb(38 28 82 / 0.9), rgb(18 12 40 / 0.94));
+    box-shadow:
+      0 1px 0 rgb(255 255 255 / 0.08) inset,
+      0 24px 60px -28px rgb(0 0 0 / 0.9);
+  }
+  .dd-cabinet:hover .dd-cabinet__body,
+  .dd-cabinet:focus-visible .dd-cabinet__body {
+    border-color: rgb(198 168 255 / 0.55);
+  }
+
+  .dd-cabinet__art {
+    position: relative;
+    padding: 0.5rem 0.5rem 0;
+  }
+
+  .dd-cabinet__stat {
+    border-radius: 1rem;
+    border: 1px solid rgb(255 255 255 / 0.1);
+    background: rgb(10 8 28 / 0.5);
+    padding: 0.625rem 0.75rem 0.75rem;
+  }
+
+  .dd-cabinet__meter {
+    height: 6px;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.12);
+    overflow: hidden;
+  }
+  .dd-cabinet__meter > span {
+    display: block;
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--color-ray-1), var(--color-ray-2));
+    transition: width 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .dd-cabinet__cta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    border-radius: 999px;
+    padding: 0.7rem 1.1rem;
+    font-weight: 700;
+    color: #2a1d05;
+    background: linear-gradient(180deg, #f6cd6a, #dfa62f);
+    box-shadow: 0 10px 24px -12px rgb(242 193 78 / 0.8);
+  }
+
+  .dd-art {
+    background: #120c2c;
+  }
+  .dd-art__buddy {
+    transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .dd-cabinet:hover .dd-art__buddy,
+  .dd-cabinet:focus-visible .dd-art__buddy {
+    transform: translateY(-6px) scale(1.05);
+  }
+  .dd-art__vignette {
+    background: radial-gradient(
+      120% 80% at 50% 40%,
+      transparent 42%,
+      rgb(10 6 26 / 0.55) 100%
+    );
+  }
+  .dd-art__motes circle {
+    animation: dd-mote 5.5s ease-in-out infinite;
+  }
+  .dd-art__motes circle:nth-child(2) {
+    animation-delay: -1.6s;
+  }
+  .dd-art__motes circle:nth-child(3) {
+    animation-delay: -3.1s;
+  }
+  .dd-art__motes circle:nth-child(4) {
+    animation-delay: -4.4s;
+  }
+
+  @keyframes dd-mote {
+    0%,
+    100% {
+      transform: translateY(0);
+      opacity: 0.35;
+    }
+    50% {
+      transform: translateY(-12px);
+      opacity: 0.9;
+    }
+  }
+}

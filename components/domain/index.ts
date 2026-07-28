@@ -75,3 +75,5 @@ export {
   type TierScaleProps,
 } from "./TierDot";
 export { SubjectTile, subjectIcon, type SubjectTileProps } from "./SubjectTile";
+export { ArcadeCard, type ArcadeCardProps, type ArcadeCardStat } from "./ArcadeCard";
+export { DungeonDashArt, type DungeonDashArtProps } from "./DungeonDashArt";

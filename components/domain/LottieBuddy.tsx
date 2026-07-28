@@ -21,6 +21,15 @@ export interface LottieBuddyProps {
   pose?: Viseme;
   transitionMs?: number;
   showFace?: boolean;
+  /** Layer gates used by the atlas exporter; all default to the live look */
+  showBody?: boolean;
+  showShadow?: boolean;
+  showEyes?: boolean;
+  showMouth?: boolean;
+  showBloom?: boolean;
+  showDust?: boolean;
+  /** Forces the blink lids open or shut instead of leaving them to CSS */
+  lidsClosed?: boolean;
   /** Free cosmetics: eyes / glow / hair ids */
   look?: Partial<LottieLook> | null;
   /** Or pass full equipped map from companion state */
@@ -38,6 +47,13 @@ export function LottieBuddy({
   pose = "REST",
   transitionMs = 80,
   showFace = true,
+  showBody = true,
+  showShadow = true,
+  showEyes = true,
+  showMouth = true,
+  showBloom = true,
+  showDust = true,
+  lidsClosed,
   look,
   equipped,
   className,
@@ -78,16 +94,18 @@ export function LottieBuddy({
       data-viseme={pose}
     >
       {/* Soft self-glow bloom — color from look */}
-      <span
-        aria-hidden="true"
-        className="lottie-buddy__bloom pointer-events-none absolute rounded-full"
-        style={{
-          background: `radial-gradient(circle at 50% 55%, ${glow.core} 0%, ${glow.mid} 32%, ${glow.outer} 52%, transparent 68%)`,
-        }}
-      />
+      {showBloom && (
+        <span
+          aria-hidden="true"
+          className="lottie-buddy__bloom pointer-events-none absolute rounded-full"
+          style={{
+            background: `radial-gradient(circle at 50% 55%, ${glow.core} 0%, ${glow.mid} 32%, ${glow.outer} 52%, transparent 68%)`,
+          }}
+        />
+      )}
 
       {/* Iridescent magical dust that trails the float */}
-      <MagicalDust state={state} />
+      {showDust && <MagicalDust state={state} />}
 
       <svg
         width={size}
@@ -280,18 +298,20 @@ export function LottieBuddy({
         </defs>
 
         {/* Cast shadow — light as a feather */}
-        <ellipse
-          className="lottie-buddy__shadow"
-          cx="50"
-          cy="92"
-          rx="22"
-          ry="4.2"
-          fill="#9EB0E8"
-          opacity="0.22"
-        />
+        {showBody && showShadow && (
+          <ellipse
+            className="lottie-buddy__shadow"
+            cx="50"
+            cy="92"
+            rx="22"
+            ry="4.2"
+            fill="#9EB0E8"
+            opacity="0.22"
+          />
+        )}
 
         {/* Antennae — behind body slightly, fiber-optic tendrils */}
-        <g className="lottie-buddy__antennae">
+        <g className="lottie-buddy__antennae" opacity={showBody ? undefined : 0}>
           {/* Left (gold tip) */}
           <g className="lottie-buddy__antenna lottie-buddy__antenna--gold">
             <path
@@ -334,7 +354,11 @@ export function LottieBuddy({
         </g>
 
         {/* Fluff body group — breathe + float applied via CSS on parent */}
-        <g className="lottie-buddy__body" filter={`url(#${id}-drop)`}>
+        <g
+          className="lottie-buddy__body"
+          filter={showBody ? `url(#${id}-drop)` : undefined}
+        >
+          <g opacity={showBody ? undefined : 0}>
           {/* Soft outer halo — restrained so lavender edge can read */}
           <ellipse
             cx="50"
@@ -434,6 +458,7 @@ export function LottieBuddy({
             <Sparkle cx={74} cy={76} size={2.7} glowId={`${id}-spark-glow`} />
             <Sparkle cx={26} cy={74} size={2.5} glowId={`${id}-spark-glow`} />
           </g>
+          </g>
 
           {showFace && (
             <g className="lottie-buddy__face">
@@ -477,6 +502,7 @@ export function LottieBuddy({
 
               {/* Eyes — large Pixar, ~30% of face width */}
               <g
+                opacity={showEyes ? undefined : 0}
                 className="lottie-buddy__eyes"
                 style={{
                   transform: `scaleY(${eyeSquish})`,
@@ -508,6 +534,8 @@ export function LottieBuddy({
                   rx={6.9}
                   ry={8.0}
                   fill="#FFF0D8"
+                  opacity={lidsClosed === undefined ? undefined : lidsClosed ? 1 : 0}
+                  style={lidsClosed === undefined ? undefined : { animation: "none" }}
                 />
                 <ellipse
                   className="lottie-buddy__lid lottie-buddy__lid--r"
@@ -516,11 +544,17 @@ export function LottieBuddy({
                   rx={6.9}
                   ry={8.0}
                   fill="#FFF0D8"
+                  opacity={lidsClosed === undefined ? undefined : lidsClosed ? 1 : 0}
+                  style={lidsClosed === undefined ? undefined : { animation: "none" }}
                 />
               </g>
 
               {/* Mouth — small, low; gentle corner lift for warmth */}
-              <g className="lottie-buddy__mouth" style={{ transition: `all ${easing}` }}>
+              <g
+                className="lottie-buddy__mouth"
+                opacity={showMouth ? undefined : 0}
+                style={{ transition: `all ${easing}` }}
+              >
                 {geometry.closed ? (
                   <path
                     d={

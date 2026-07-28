@@ -182,3 +182,13 @@ export const equipSchema = z.discriminatedUnion("kind", [
     nickname: z.string().max(24),
   }),
 ]);
+
+export const arcadePlaySchema = z.object({
+  gameId: z.string().trim().min(1).max(60),
+  missionId: z.string().trim().min(1).max(80),
+  roomsCleared: z.number().int().min(0).max(200),
+  questionsAnswered: z.number().int().min(0).max(500),
+  questionsCorrect: z.number().int().min(0).max(500),
+  perfectAnswers: z.number().int().min(0).max(500),
+  heartsLeft: z.number().int().min(0).max(20),
+});

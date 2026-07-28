@@ -1,6 +1,6 @@
 "use client";
 
-import { BookOpenText, Bot, House, Sparkles, Trophy, UserRound } from "lucide-react";
+import { BookOpenText, Bot, Gamepad2, House, Sparkles, Trophy, UserRound } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
@@ -10,6 +10,7 @@ import { Logo, LogoMark } from "./Logo";
 const NAV = [
   { href: "/dashboard", label: "Home", Icon: House },
   { href: "/subjects", label: "Subjects", Icon: BookOpenText },
+  { href: "/arcade", label: "Arcade", Icon: Gamepad2 },
   { href: "/scoreboard", label: "Score", Icon: Trophy },
   { href: "/tutor", label: "Study buddy", Icon: Bot },
   { href: "/companion", label: "Buddy", Icon: Sparkles },
